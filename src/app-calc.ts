@@ -1,22 +1,25 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
-import './input-cuantia';
-import './x-results';
+import './app-input-cuantia';
+import './app-results';
 
-@customElement('x-calc')
-export class XCalc extends LitElement {
+@customElement('app-calc')
+export class AppCalc extends LitElement {
   static override styles = css``;
 
   amount: number | undefined;
 
   override render() {
     const inputTmpl = html`
-      <input-cuantia @onCalculate=${this._onCalculate}></input-cuantia>
+      <app-input-cuantia @onCalculate=${this._onCalculate}></app-input-cuantia>
     `;
 
     const resultsTmpl = html`
-      <x-results @onBack=${this._onBack} .amount=${this.amount!}></x-results>
+      <app-results
+        @onBack=${this._onBack}
+        .amount=${this.amount!}
+      ></app-results>
     `;
 
     return !this.amount ? inputTmpl : resultsTmpl;

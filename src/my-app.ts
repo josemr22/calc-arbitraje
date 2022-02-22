@@ -3,13 +3,12 @@ import {customElement} from 'lit/decorators.js';
 
 import './app-header';
 import './app-description';
-import './x-calc';
+import './app-calc';
 
 @customElement('my-app')
 export class MyApp extends LitElement {
   static override styles = css`
-    :host {
-      display: block;
+    .container {
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -18,8 +17,10 @@ export class MyApp extends LitElement {
   override render() {
     return html`
       <app-header></app-header>
-      <app-description></app-description>
-      <x-calc></x-calc>
+      <div class="container">
+        <app-description></app-description>
+        <app-calc></app-calc>
+      </div>
     `;
   }
 }

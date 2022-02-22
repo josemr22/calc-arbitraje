@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-export declare class InputCuantia extends LitElement {
+export declare class AppInputCuantia extends LitElement {
     static styles: import("lit").CSSResult;
     _amount: number;
     _error: boolean;
@@ -7,4 +7,4 @@ export declare class InputCuantia extends LitElement {
     _changeAmount(event: InputEvent): void;
     _calculate(): void;
 }
-//# sourceMappingURL=input-cuantia.d.ts.map
+//# sourceMappingURL=app-input-cuantia.d.ts.map

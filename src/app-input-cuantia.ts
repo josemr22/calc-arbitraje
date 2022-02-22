@@ -2,8 +2,8 @@ import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {when} from 'lit/directives/when.js';
 
-@customElement('input-cuantia')
-export class InputCuantia extends LitElement {
+@customElement('app-input-cuantia')
+export class AppInputCuantia extends LitElement {
   static override styles = css`
     :host {
       display: block;
@@ -34,9 +34,10 @@ export class InputCuantia extends LitElement {
   }
 
   _changeAmount(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
     this._error = false;
+    this._amount = Number(input.value);
     this.requestUpdate();
-    this._amount = Number(event.data);
   }
 
   _calculate() {

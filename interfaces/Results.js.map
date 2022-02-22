@@ -1,1 +1,0 @@
-{"version":3,"file":"results.js","sourceRoot":"","sources":["../src/interfaces/results.ts"],"names":[],"mappings":"","sourcesContent":["export interface Results {\r\n  montoCuantia: number;\r\n  arbitroUnico: number;\r\n  tribunalArbitral: number;\r\n  centroArbitraje: number | undefined;\r\n}\r\n"]}

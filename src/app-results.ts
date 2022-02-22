@@ -1,8 +1,8 @@
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {Results} from './interfaces/results';
-@customElement('x-results')
-export class XResults extends LitElement {
+@customElement('app-results')
+export class AppResults extends LitElement {
   static override styles = css`
     :host {
       display: flex;

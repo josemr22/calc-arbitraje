@@ -6,15 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import './input-cuantia';
-import './x-results';
-let XCalc = class XCalc extends LitElement {
+import './app-input-cuantia';
+import './app-results';
+let AppCalc = class AppCalc extends LitElement {
     render() {
         const inputTmpl = html `
-      <input-cuantia @onCalculate=${this._onCalculate}></input-cuantia>
+      <app-input-cuantia @onCalculate=${this._onCalculate}></app-input-cuantia>
     `;
         const resultsTmpl = html `
-      <x-results @onBack=${this._onBack} .amount=${this.amount}></x-results>
+      <app-results
+        @onBack=${this._onBack}
+        .amount=${this.amount}
+      ></app-results>
     `;
         return !this.amount ? inputTmpl : resultsTmpl;
     }
@@ -27,9 +30,9 @@ let XCalc = class XCalc extends LitElement {
         this.requestUpdate();
     }
 };
-XCalc.styles = css ``;
-XCalc = __decorate([
-    customElement('x-calc')
-], XCalc);
-export { XCalc };
-//# sourceMappingURL=x-calc.js.map
+AppCalc.styles = css ``;
+AppCalc = __decorate([
+    customElement('app-calc')
+], AppCalc);
+export { AppCalc };
+//# sourceMappingURL=app-calc.js.map

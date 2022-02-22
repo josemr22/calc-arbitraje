@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
-let XResults = class XResults extends LitElement {
+let AppResults = class AppResults extends LitElement {
     render() {
         return html `
       <table>
@@ -118,7 +118,7 @@ let XResults = class XResults extends LitElement {
         return results;
     }
 };
-XResults.styles = css `
+AppResults.styles = css `
     :host {
       display: flex;
       flex-direction: column;
@@ -129,8 +129,8 @@ XResults.styles = css `
       cursor: pointer;
     }
   `;
-XResults = __decorate([
-    customElement('x-results')
-], XResults);
-export { XResults };
-//# sourceMappingURL=x-results.js.map
+AppResults = __decorate([
+    customElement('app-results')
+], AppResults);
+export { AppResults };
+//# sourceMappingURL=app-results.js.map

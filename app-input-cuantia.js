@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
-let InputCuantia = class InputCuantia extends LitElement {
+let AppInputCuantia = class AppInputCuantia extends LitElement {
     constructor() {
         super(...arguments);
         this._error = false;
@@ -23,9 +23,10 @@ let InputCuantia = class InputCuantia extends LitElement {
     `;
     }
     _changeAmount(event) {
+        const input = event.target;
         this._error = false;
+        this._amount = Number(input.value);
         this.requestUpdate();
-        this._amount = Number(event.data);
     }
     _calculate() {
         if (!this._amount) {
@@ -41,7 +42,7 @@ let InputCuantia = class InputCuantia extends LitElement {
         this.dispatchEvent(event);
     }
 };
-InputCuantia.styles = css `
+AppInputCuantia.styles = css `
     :host {
       display: block;
       text-align: center;
@@ -51,8 +52,8 @@ InputCuantia.styles = css `
       color: red;
     }
   `;
-InputCuantia = __decorate([
-    customElement('input-cuantia')
-], InputCuantia);
-export { InputCuantia };
-//# sourceMappingURL=input-cuantia.js.map
+AppInputCuantia = __decorate([
+    customElement('app-input-cuantia')
+], AppInputCuantia);
+export { AppInputCuantia };
+//# sourceMappingURL=app-input-cuantia.js.map
