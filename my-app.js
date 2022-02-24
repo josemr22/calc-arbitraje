@@ -22,9 +22,10 @@ let MyApp = class MyApp extends LitElement {
 };
 MyApp.styles = css `
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+      /* max-width: 1200px; */
+      margin: 0;
+      padding: 0;
+    }    
   `;
 MyApp = __decorate([
     customElement('my-app')

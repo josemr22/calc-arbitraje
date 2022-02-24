@@ -1,9 +1,18 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 @customElement('app-description')
 export class AppDescription extends LitElement {
-  static override styles = css``;
+  static override styles = css`
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,500;1,900&display=swap');
+  :host{
+    font-family: 'Poppins', sans-serif;
+    display: block;
+  }
+  p{
+    font-size: 14px;
+  }
+  `;
 
   override render() {
     return html`
