@@ -1,5 +1,5 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 import './app-header';
 import './app-description';
@@ -9,9 +9,10 @@ import './app-calc';
 export class MyApp extends LitElement {
   static override styles = css`
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+      /* max-width: 1200px; */
+      margin: 0;
+      padding: 0;
+    }    
   `;
 
   override render() {
