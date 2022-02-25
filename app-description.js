@@ -15,19 +15,13 @@ let AppDescription = class AppDescription extends LitElement {
         correponde asumir a las partes de los arbitrajes organizados y
         administrados por el OSCE, asi como en los arbitrajes ad hoc.
       </p>
-
-      <a class="nav-link active" data-toggle="tab" href="calculadora.asp"
-        >Directiva N° 007-2009-OSCE/CD</a
-      >
-      <a class="nav-link" data-toggle="tab" href="calculadoraTasa2016.asp"
-        >Directiva N° 021-2016-OSCE/CD</a
-      >
+    
 
       <p>
         Los cálculos son realizados en base a lo establecido en la Directiva N°
         007-2009-OSCE/CD, para los procesos arbitrales iniciados hasta el 29 de
         junio de 2016. Puede acceder a esta Directiva
-        <a
+        <a class="link"
           href="http://www.osce.gob.pe/consucode/userfiles/file/DDA%20-%20NORMAS%20APLICABLES/Directiva%20N%20007-2009-OSCE%20-%20SUPUESTOS%20DE%20DEVOLUCIN%20DE%20HONORARIOS.pdf"
           target="_blank"
           >haciendo clic aquí</a
@@ -43,9 +37,17 @@ AppDescription.styles = css `
   :host{
     font-family: 'Poppins', sans-serif;
     display: block;
+    padding: 0.4rem 1.4rem;
   }
   p{
     font-size: 14px;
+    color: white;    
+    text-align: justify
+  }
+  .link{
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
   }
   `;
 AppDescription = __decorate([

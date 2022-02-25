@@ -121,13 +121,14 @@ let AppResults = class AppResults extends LitElement {
     }
 };
 AppResults.styles = css `
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,500;1,900&display=swap'); 
     :host {
       display: block;
       text-align: center;
       font-family: 'Poppins', sans-serif;
       position: fixed;
       bottom: 0px;
-      padding-bottom: 15rem;
+      padding-bottom: 7rem;
       width: 100%;
       background-color: white;
       border-radius: 4rem 4rem 0rem 0rem;
@@ -150,13 +151,13 @@ AppResults.styles = css `
       padding: 1.5rem 2rem;
       border-radius: 1.2rem;
       border: none;  
-      background-color: rgb(50, 46, 84);
+      background-color: #52a7fe;
       color: white;
       font-weight: bold;
     }
     .results-title{
       font-size: 1.8rem;
-      color: rgb(50, 46, 84);
+      color: #52a7fe;
       font-weight: bold;
     }
     .results-tr{
