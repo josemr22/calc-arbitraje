@@ -52,7 +52,7 @@ AppInputCuantia.styles = css `
     bottom: 0px;
     padding-bottom: 7rem;
     width: 100%;
-    background-color: white;
+    background-color: #52a7fe;
     border-radius: 4rem 4rem 0rem 0rem;
     padding-top: 3rem;
     transition: all 1.3s;
@@ -71,7 +71,7 @@ AppInputCuantia.styles = css `
   }
   .label-cuantia{
     font-size: 1.8rem;
-    color: #52a7fe;
+    color: white;
     font-weight: bold;
   }
   .input-cuantia{
@@ -87,7 +87,7 @@ AppInputCuantia.styles = css `
     display: block;
     border-bottom: 0.3rem solid transparent;
     transition: all 0.3s;
-    box-shadow: 0px 0px 20px 0px #0000001f;
+    box-shadow: rgb(77 107 255 / 54%) 0px 0px 20px 0px;;
   }
   .btn-cuantia{
     width: 77%;
@@ -95,9 +95,9 @@ AppInputCuantia.styles = css `
     font-size: 1.5rem;
     padding: 1.5rem 2rem;
     border-radius: 1.2rem;
-    border: none;  
-    background-color: #52a7fe;
-    color: white;
+    border: none;
+    background-color: #293181;
+    color: rgb(255 255 255);
     font-weight: bold;
     cursor: pointer;
   }    
