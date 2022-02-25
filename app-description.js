@@ -40,8 +40,8 @@ AppDescription.styles = css `
     padding: 0.4rem 1.4rem;
   }
   p{
-    font-size: 14px;
-    color: white;    
+    font-size: 17px;
+    color: black;    
     text-align: justify
   }
   .link{

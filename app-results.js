@@ -128,9 +128,9 @@ AppResults.styles = css `
       font-family: 'Poppins', sans-serif;
       position: fixed;
       bottom: 0px;
-      padding-bottom: 7rem;
+      padding-bottom: 2rem;
       width: 100%;
-      background-color: white;
+      background-color: #52a7fe;
       border-radius: 4rem 4rem 0rem 0rem;
       padding-top: 3rem;
       transition: all 1.3s;
@@ -151,17 +151,17 @@ AppResults.styles = css `
       padding: 1.5rem 2rem;
       border-radius: 1.2rem;
       border: none;  
-      background-color: #52a7fe;
-      color: white;
+      background-color: #293181;
+      color: rgb(255 255 255);
       font-weight: bold;
     }
     .results-title{
-      font-size: 1.8rem;
-      color: #52a7fe;
+      font-size: 2.2rem;
+      color: white;
       font-weight: bold;
     }
     .results-tr{
-      font-size: 1.2rem;
+      font-size: 1.8rem;
     }
     .results-tr td{
       padding: 0.5rem;
