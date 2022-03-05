@@ -11,7 +11,7 @@ export class AppHeader extends LitElement {
       font-weight: bold;
       color: #293181;
       font-size: xx-large;
-      padding: 1rem;
+      padding: 0rem 1rem;
     }
   `;
 

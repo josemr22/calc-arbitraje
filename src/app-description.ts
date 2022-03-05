@@ -8,7 +8,7 @@ export class AppDescription extends LitElement {
   :host{
     font-family: 'Poppins', sans-serif;
     display: block;
-    padding: 0.4rem 1.4rem;
+    padding: 0rem 1.4rem;
   }
   p{
     font-size: 17px;
@@ -25,14 +25,13 @@ export class AppDescription extends LitElement {
   override render() {
     return html`
       <p>
-        Permite determinar el monto de los gastos arbitrales (honorarios de
-        árbitros y gastos administrativos de la Secretaría Arbitral) que
-        correponde asumir a las partes de los arbitrajes organizados y
-        administrados por el OSCE, asi como en los arbitrajes ad hoc.
+      Estimado usuario:
       </p>
+      <p>A través del siguiente aplicativo, usted podrá calcular los gastos arbitrales que le corresponda asumir por concepto de árbitro único o tribunal arbitral, según corresponda, así como del Centro de Arbitraje ACIR Internacional (Del mismo color del título y con negrita).</p>
+      <p>Lo invitamos a ingresar la información requerida para efectuar el cálculo de los gastos arbitrales que correspondan a su proceso.</p>
     
 
-      <p>
+      <!-- <p>
         Los cálculos son realizados en base a lo establecido en la Directiva N°
         007-2009-OSCE/CD, para los procesos arbitrales iniciados hasta el 29 de
         junio de 2016. Puede acceder a esta Directiva
@@ -43,7 +42,7 @@ export class AppDescription extends LitElement {
         >.<br /><br />
         Ingrese la información solicitada para realizar el cálculo de los gastos
         arbitrales que corresponde a su proceso.
-      </p>
+      </p> -->
     `;
   }
 }
