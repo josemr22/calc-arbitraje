@@ -64,7 +64,8 @@ let AppResults = class AppResults extends LitElement {
         </table>
         <span>(*) Monto Neto</span>
         <span>(**) Monto sin IGV</span>
-        <a @click=${this._exportToPdf}>Exportar en pdf</a>
+        <script src="https://kit.fontawesome.com/88cd56de91.js" crossorigin="anonymous"></script>
+        <button class="pdf" @click=${this._exportToPdf}><i class="fa-solid fa-file-pdf"></i> Exportar en pdf</button>
         <button @click=${this._navigateToBack}>Realizar otro cálculo</button>
       </div>
     `;
@@ -214,6 +215,19 @@ AppResults.styles = css `
       border-radius: 1.2rem;
       border: none;
       background-color: #293181;
+      color: rgb(255 255 255);
+      font-weight: bold;
+    }
+    .pdf{
+      cursor: pointer;
+      width: 77%;
+      display: block;
+      font-size: 1.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 1.2rem;
+      border: none;
+      background-color: #e72424;
+      margin-bottom: 0.5rem;
       color: rgb(255 255 255);
       font-weight: bold;
     }

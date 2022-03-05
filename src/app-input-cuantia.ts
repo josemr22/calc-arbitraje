@@ -1,6 +1,6 @@
-import {LitElement, html, css} from 'lit';
-import {customElement, query} from 'lit/decorators.js';
-import {when} from 'lit/directives/when.js';
+import { LitElement, html, css } from 'lit';
+import { customElement, query } from 'lit/decorators.js';
+import { when } from 'lit/directives/when.js';
 
 @customElement('app-input-cuantia')
 export class AppInputCuantia extends LitElement {
@@ -63,6 +63,28 @@ export class AppInputCuantia extends LitElement {
       font-weight: bold;
       cursor: pointer;
     }
+    .btn-determinada{
+      width: 77%;
+      display: block;
+      font-size: 1.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 1.2rem;
+      border: none;
+      background-color: rgb(219 169 0);
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+    .centered{
+      text-align: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-content: center;
+      justify-content: center;
+    }
     a {
       cursor: pointer;
     }
@@ -85,11 +107,11 @@ export class AppInputCuantia extends LitElement {
     `;
 
     const indeterminadoTmpl = html`
-      <div>
+      <div class="centered">
         <label class="label-cuantia">Monto del Contrato Original (S/)</label>
         <input class="input-cuantia" type="number" id="montoContratoOriginal" />
       </div>
-      <div>
+      <div class="centered">
         <label class="label-cuantia"
           >Número de pretensiones indeterminada</label
         >
@@ -100,15 +122,14 @@ export class AppInputCuantia extends LitElement {
     return html`
       <div class="contenedor">
         ${when(
-          this._determinated,
-          () => determinadoTmpl,
-          () => indeterminadoTmpl
-        )}
+      this._determinated,
+      () => determinadoTmpl,
+      () => indeterminadoTmpl
+    )}
 
-        <a @click=${this._changeDeterminated}
+        <button class="btn-determinada" @click=${this._changeDeterminated}
           >Calcular gastos para pretensión de cuantía
-          ${this._determinated ? 'determinada' : 'indeterminada'}.</a
-        >
+          ${this._determinated ? 'determinada' : 'indeterminada'}.</button>
         <button class="btn-cuantia" @click=${this._calculate}>
           Realizar cálculo
         </button>

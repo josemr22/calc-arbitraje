@@ -1,8 +1,8 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
-import {Results} from './interfaces/results';
-import {UserData} from './interfaces/user-data';
-import {when} from 'lit/directives/when.js';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { Results } from './interfaces/results';
+import { UserData } from './interfaces/user-data';
+import { when } from 'lit/directives/when.js';
 @customElement('app-results')
 export class AppResults extends LitElement {
   static override styles = css`
@@ -37,6 +37,19 @@ export class AppResults extends LitElement {
       border-radius: 1.2rem;
       border: none;
       background-color: #293181;
+      color: rgb(255 255 255);
+      font-weight: bold;
+    }
+    .pdf{
+      cursor: pointer;
+      width: 77%;
+      display: block;
+      font-size: 1.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 1.2rem;
+      border: none;
+      background-color: #e72424;
+      margin-bottom: 0.5rem;
       color: rgb(255 255 255);
       font-weight: bold;
     }
@@ -103,15 +116,15 @@ export class AppResults extends LitElement {
               </td>
             </tr>
             ${when(
-              this.data.determinated,
-              () => html`<tr class="results-tr">
+      this.data.determinated,
+      () => html`<tr class="results-tr">
                 <td>Monto de Cuantía</td>
                 <td class="results-left">
                   S/ ${this.results.montoCuantia!.toFixed(2)}
                 </td>
               </tr>`,
-              () => html``
-            )}
+      () => html``
+    )}
             <tr class="results-tr">
               <td>Árbitro Único (*)</td>
               <td class="results-left">
@@ -128,15 +141,16 @@ export class AppResults extends LitElement {
               <td>Centro de Arbitraje (**)</td>
               <td class="results-left">
                 ${this.results.centroArbitraje
-                  ? 'S/ ' + this.results.centroArbitraje.toFixed(2)
-                  : ''}
+        ? 'S/ ' + this.results.centroArbitraje.toFixed(2)
+        : ''}
               </td>
             </tr>
           </tbody>
         </table>
         <span>(*) Monto Neto</span>
         <span>(**) Monto sin IGV</span>
-        <a @click=${this._exportToPdf}>Exportar en pdf</a>
+        <script src="https://kit.fontawesome.com/88cd56de91.js" crossorigin="anonymous"></script>
+        <button class="pdf" @click=${this._exportToPdf}><i class="fa-solid fa-file-pdf"></i> Exportar en pdf</button>
         <button @click=${this._navigateToBack}>Realizar otro cálculo</button>
       </div>
     `;
