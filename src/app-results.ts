@@ -1,10 +1,12 @@
-import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { Results } from './interfaces/results';
+import {LitElement, html, css} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {Results} from './interfaces/results';
+import {UserData} from './interfaces/user-data';
+import {when} from 'lit/directives/when.js';
 @customElement('app-results')
 export class AppResults extends LitElement {
   static override styles = css`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,500;1,900&display=swap'); 
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,500;1,900&display=swap');
     :host {
       display: block;
       text-align: center;
@@ -18,7 +20,7 @@ export class AppResults extends LitElement {
       padding-top: 3rem;
       transition: all 1.3s;
     }
-    .contenedor{
+    .contenedor {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -33,68 +35,117 @@ export class AppResults extends LitElement {
       font-size: 1.5rem;
       padding: 1.5rem 2rem;
       border-radius: 1.2rem;
-      border: none;  
+      border: none;
       background-color: #293181;
       color: rgb(255 255 255);
       font-weight: bold;
     }
-    .results-title{
+    .results-title {
       font-size: 2.2rem;
       color: white;
       font-weight: bold;
     }
-    .results-tr{
+    .results-tr {
       font-size: 1.8rem;
     }
-    .results-tr td{
+    .results-tr td {
       padding: 0.5rem;
     }
-    table{
-      margin-bottom: 1.5rem
+    table {
+      margin-bottom: 1.5rem;
     }
-    .results-left{
-      text-align: left;      
+    .results-left {
+      text-align: left;
       font-weight: bold;
+    }
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .error-container p {
+      max-width: 960px;
+      text-align: left;
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+    a {
+      cursor: pointer;
     }
   `;
 
-  amount!: number;
-
+  data!: UserData;
+  _errorExceso = false;
   override render() {
-    return html`
-    <div class="contenedor">
-      <table>
-        <tbody>
-          <tr>
-            <td class="results-title" colspan="2">
-              Gastos arbitrales correspondientes a la siguiente cuantía
-            </td>
-          </tr>
-          <tr class="results-tr">
-            <td>Monto de Cuantía</td>
-            <td class="results-left">S/ ${this.results.montoCuantia.toFixed(2)}</td>
-          </tr>
-          <tr class="results-tr">
-            <td>Árbitro Único</td>
-            <td class="results-left">S/ ${this.results.arbitroUnico.toFixed(2)}</td>
-          </tr>
-          <tr class="results-tr">
-            <td>Tribunal Arbitral</td>
-            <td class="results-left">S/ ${this.results.tribunalArbitral.toFixed(2)}</td>
-          </tr>
-          <tr class="results-tr">
-            <td>Centro de Arbitraje</td>
-            <td class="results-left">
-              ${this.results.centroArbitraje
-        ? 'S/ ' + this.results.centroArbitraje.toFixed(2)
-        : '👀'}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button @click=${this._navigateToBack}>Realizar otro cálculo</button>
-    </div>
+    const errorTmpl = html`
+      <div class="error-container">
+        <p>
+          La suma de valores de las pretensiones indeterminadas debe ser menor o
+          igual al monto de contrato original objeto del arbitraje. Ingrese un
+          número menor de pretensiones indeterminadas.
+        </p>
+        <button @click=${() => this._navigateToBack()}>
+          Realizar otro cálculo
+        </button>
+      </div>
     `;
+
+    const resultsTmpl = html`
+      <div class="contenedor">
+        <table class="pdf-content">
+          <tbody>
+            <tr>
+              <td class="results-title" colspan="2">
+                Gastos arbitrales correspondientes a la siguiente cuantía
+              </td>
+            </tr>
+            ${when(
+              this.data.determinated,
+              () => html`<tr class="results-tr">
+                <td>Monto de Cuantía</td>
+                <td class="results-left">
+                  S/ ${this.results.montoCuantia!.toFixed(2)}
+                </td>
+              </tr>`,
+              () => html``
+            )}
+            <tr class="results-tr">
+              <td>Árbitro Único (*)</td>
+              <td class="results-left">
+                S/ ${this.results.arbitroUnico.toFixed(2)}
+              </td>
+            </tr>
+            <tr class="results-tr">
+              <td>Tribunal Arbitral (*)</td>
+              <td class="results-left">
+                S/ ${this.results.tribunalArbitral.toFixed(2)}
+              </td>
+            </tr>
+            <tr class="results-tr">
+              <td>Centro de Arbitraje (**)</td>
+              <td class="results-left">
+                ${this.results.centroArbitraje
+                  ? 'S/ ' + this.results.centroArbitraje.toFixed(2)
+                  : ''}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <span>(*) Monto Neto</span>
+        <span>(**) Monto sin IGV</span>
+        <a @click=${this._exportToPdf}>Exportar en pdf</a>
+        <button @click=${this._navigateToBack}>Realizar otro cálculo</button>
+      </div>
+    `;
+
+    if (this._errorExceso) {
+      return errorTmpl;
+    } else {
+      return resultsTmpl;
+    }
   }
 
   _navigateToBack() {
@@ -103,70 +154,108 @@ export class AppResults extends LitElement {
 
   get results(): Results {
     let results: Results;
+    if (this.data.determinated) {
+      const amount = this.data.montoCuantia!;
 
-    if (this.amount <= 36_000) {
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 2500,
-        tribunalArbitral: 5512,
-        centroArbitraje: 2500,
-      };
-    } else if (this.amount <= 72_000) {
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 3200,
-        tribunalArbitral: 9283,
-        centroArbitraje: 3200,
-      };
-    } else if (this.amount <= 108_000) {
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 4660,
-        tribunalArbitral: 11519,
-        centroArbitraje: 500,
-      };
-    } else if (this.amount <= 180_000) {
-      const ex = this.amount - 108_000;
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 5000 + 0.0153 * ex,
-        tribunalArbitral: 11_800 + 0.04 * ex,
-        centroArbitraje: 4_036 + 0.02 * ex,
-      };
-    } else if (this.amount <= 360_000) {
-      const ex = this.amount - 180_000;
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 7_080 + 0.006 * ex,
-        tribunalArbitral: 15_284 + 0.0126 * ex,
-        centroArbitraje: 4_607 + 0.0091 * ex,
-      };
-    } else if (this.amount <= 1_800_000) {
-      const ex = this.amount - 360_000;
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 8_518 + 0.0063 * ex,
-        tribunalArbitral: 18_092 + 0.015 * ex,
-        centroArbitraje: 5_889 + 0.0062 * ex,
-      };
-    } else if (this.amount <= 3_600_000) {
-      const ex = this.amount - 1_800_000;
-      results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 20_408 + 0.0034 * ex,
-        tribunalArbitral: 42_606 + 0.0089 * ex,
-        centroArbitraje: 11_679 + 0.005 * ex,
-      };
+      if (amount <= 36_000) {
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 2500,
+          tribunalArbitral: 5512,
+          centroArbitraje: 2500,
+        };
+      } else if (amount <= 72_000) {
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 3200,
+          tribunalArbitral: 9283,
+          centroArbitraje: 3200,
+        };
+      } else if (amount <= 108_000) {
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 4660,
+          tribunalArbitral: 11519,
+          centroArbitraje: 4_500,
+        };
+      } else if (amount <= 180_000) {
+        const ex = amount - 108_000;
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 5000 + 0.0153 * ex,
+          tribunalArbitral: 11_800 + 0.04 * ex,
+          centroArbitraje: 4_036 + 0.02 * ex,
+        };
+      } else if (amount <= 360_000) {
+        const ex = amount - 180_000;
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 7_080 + 0.006 * ex,
+          tribunalArbitral: 15_284 + 0.0126 * ex,
+          centroArbitraje: 4_607 + 0.0091 * ex,
+        };
+      } else if (amount <= 1_800_000) {
+        const ex = amount - 360_000;
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 8_518 + 0.0063 * ex,
+          tribunalArbitral: 18_092 + 0.015 * ex,
+          centroArbitraje: 5_889 + 0.0062 * ex,
+        };
+      } else if (amount <= 3_600_000) {
+        const ex = amount - 1_800_000;
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 20_408 + 0.0034 * ex,
+          tribunalArbitral: 42_606 + 0.0089 * ex,
+          centroArbitraje: 11_679 + 0.005 * ex,
+        };
+      } else {
+        const ex = amount - 3_600_000;
+        results = {
+          montoCuantia: amount,
+          arbitroUnico: 30_156 + 0.0031 * ex,
+          tribunalArbitral: 62_253 + 0.0043 * ex,
+          centroArbitraje: null,
+        };
+      }
     } else {
-      const ex = this.amount - 3_600_000;
+      const honorariosArbitro =
+        this.data.montoContratoOriginal! *
+        (2.7 / 100) *
+        this.data.pretensiones!;
+
+      const centroArbitraje =
+        this.data.montoContratoOriginal! *
+        (2.2 / 100) *
+        this.data.pretensiones!;
+
+      if (
+        honorariosArbitro > this.data.montoContratoOriginal! ||
+        centroArbitraje > this.data.montoContratoOriginal!
+      ) {
+        this._errorExceso = true;
+      }
+
       results = {
-        montoCuantia: this.amount,
-        arbitroUnico: 30_156 + 0.0031 * ex,
-        tribunalArbitral: 62_253 + 0.0043 * ex,
-        centroArbitraje: undefined,
+        arbitroUnico: honorariosArbitro,
+        tribunalArbitral: honorariosArbitro,
+        centroArbitraje: centroArbitraje,
       };
     }
 
     return results;
+  }
+
+  _exportToPdf() {
+    const data = {
+      ...this.results,
+      determinated: this.data.determinated,
+    };
+    const params = Object.entries(data)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    location.href = `http://superbackend.xyz/api/pdf/acir?${params}`;
   }
 }

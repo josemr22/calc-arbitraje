@@ -1,7 +1,7 @@
 export interface Results {
-    montoCuantia: number;
+    montoCuantia?: number;
     arbitroUnico: number;
     tribunalArbitral: number;
-    centroArbitraje: number | undefined;
+    centroArbitraje: number | null;
 }
 //# sourceMappingURL=results.d.ts.map

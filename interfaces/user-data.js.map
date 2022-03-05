@@ -1,0 +1,1 @@
+{"version":3,"file":"user-data.js","sourceRoot":"","sources":["../src/interfaces/user-data.ts"],"names":[],"mappings":"","sourcesContent":["export interface UserData {\r\n  determinated: true;\r\n  montoCuantia?: number;\r\n  montoContratoOriginal?: number;\r\n  pretensiones?: number;\r\n}\r\n"]}
