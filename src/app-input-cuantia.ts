@@ -129,7 +129,7 @@ export class AppInputCuantia extends LitElement {
 
         <button class="btn-determinada" @click=${this._changeDeterminated}
           >Calcular gastos para pretensión de cuantía
-          ${this._determinated ? 'determinada' : 'indeterminada'}.</button>
+          ${this._determinated ? 'indeterminada' : 'determinada'}.</button>
         <button class="btn-cuantia" @click=${this._calculate}>
           Realizar cálculo
         </button>

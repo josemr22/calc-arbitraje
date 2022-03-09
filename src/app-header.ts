@@ -18,7 +18,7 @@ export class AppHeader extends LitElement {
   override render() {
     return html`
       <header>
-        <h1>Calculadora de Gastos Arbitrales del OSCE</h1>
+        <h1>Calculadora de Gastos Arbitrales de ACIR Internacional</h1>
       </header>
     `;
   }

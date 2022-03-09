@@ -36,7 +36,7 @@ let AppInputCuantia = class AppInputCuantia extends LitElement {
 
         <button class="btn-determinada" @click=${this._changeDeterminated}
           >Calcular gastos para pretensión de cuantía
-          ${this._determinated ? 'determinada' : 'indeterminada'}.</button>
+          ${this._determinated ? 'indeterminada' : 'determinada'}.</button>
         <button class="btn-cuantia" @click=${this._calculate}>
           Realizar cálculo
         </button>
@@ -95,7 +95,7 @@ AppInputCuantia.styles = css `
       font-family: 'Poppins', sans-serif;
       position: fixed;
       bottom: 0px;
-      padding-bottom: 7rem;
+      padding-bottom: 15px;
       width: 100%;
       background-color: #52a7fe;
       border-radius: 4rem 4rem 0rem 0rem;

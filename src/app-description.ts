@@ -20,6 +20,11 @@ export class AppDescription extends LitElement {
     color: red;
     font-weight: bold;
   }
+  span{
+    font-family: Poppins, sans-serif;
+    font-weight: bold;
+    color: #293181;
+  }
   `;
 
   override render() {
@@ -27,7 +32,7 @@ export class AppDescription extends LitElement {
       <p>
       Estimado usuario:
       </p>
-      <p>A través del siguiente aplicativo, usted podrá calcular los gastos arbitrales que le corresponda asumir por concepto de árbitro único o tribunal arbitral, según corresponda, así como del Centro de Arbitraje ACIR Internacional (Del mismo color del título y con negrita).</p>
+      <p>A través del siguiente aplicativo, usted podrá calcular los gastos arbitrales que le corresponda asumir por concepto de árbitro único o tribunal arbitral, según corresponda, así como del Centro de Arbitraje <span>ACIR Internacional</span> .</p>
       <p>Lo invitamos a ingresar la información requerida para efectuar el cálculo de los gastos arbitrales que correspondan a su proceso.</p>
     
 
