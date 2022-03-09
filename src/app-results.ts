@@ -13,11 +13,11 @@ export class AppResults extends LitElement {
       font-family: 'Poppins', sans-serif;
       position: fixed;
       bottom: 0px;
-      padding-bottom: 2rem;
+      padding-bottom: 15px;
       width: 100%;
       background-color: #52a7fe;
       border-radius: 4rem 4rem 0rem 0rem;
-      padding-top: 3rem;
+      padding-top: 1rem;
       transition: all 1.3s;
     }
     .contenedor {
@@ -54,12 +54,12 @@ export class AppResults extends LitElement {
       font-weight: bold;
     }
     .results-title {
-      font-size: 2.2rem;
+      font-size: 1.5rem;
       color: white;
       font-weight: bold;
     }
     .results-tr {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
     }
     .results-tr td {
       padding: 0.5rem;
